@@ -40,23 +40,28 @@ typedef struct			s_file
 
 typedef struct          s_stack
 {
-    void                *data;
-    unit32_t            len;
-    unit32_t            capacity;
-}
+    char                *data;
+    size_t              len;
+    int                 capacity;
+}                       t_stack;
 
 typedef	struct			s_env
 {
 	t_pars				pars;
+    char                *path;
 }						t_env;
 
 int						init(t_env **env, int argc, char **argv);
 int						lst_is_sort(t_file *lst);
+int                     get_inf(t_file **lst, char *path);
 t_file					*new_node();
 void                    print(t_file *lst);
 void                    check_opt(t_file *lst);
-void                    full_listing(t_file *lst);
+void                    full_listing(void *add);
+void                    sort_lst(t_file **lst);
+void                    *mempush(char *data, const void *add, int st, int sp);
 t_file					*add_link(t_file *lst, t_file *new);
 t_file					*swap2(t_file **lst, int id); //temp
 t_file					*get_prev(t_file *lst, t_file *link);
+
 #endif

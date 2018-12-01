@@ -12,57 +12,58 @@
 
 #include "ft_ls.h"
 
-void    alloc(t_stack **stack)
+t_stack    *alloc(t_stack *stack)
 {
-    t_stack tmp;
+    //t_stack tmp;
 
-    tmp = NULL;
     if (!stack)
     {
-        ft_memalloc(stack, sizeof(stack));
-        ft_memaloc(stack->data, STACK_CAPACITY);
-        ft_bzero(&stack, sizeof(stack));
-        return ;
+        stack = ft_memalloc(sizeof(*stack));
+        ft_bzero(stack, sizeof(*stack));
+        stack->data = ft_strnew(STACK_CAPACITY);
+        stack->len = 0;
+        return(stack) ;
     }
-    stack->capacity += STACK_CAPACITY;
-    tmp = stack->(*data);
+    return (stack);
+    /*stack->capacity += STACK_CAPACITY;
+    tmp = stack->(data);
     ft_memalloc(stack->data, capacity)
-    ft_memcpy(stack->data, tmp);
+    ft_memcpy(stack->data, tmp);*/
 }
 
 void    *new_path(void *add)
 {
-    static t_stack stack;
+    static t_stack *stack;
 
-    if (!stack || (strlen((char *)add) + stack->capacity >= stack->capacity + 1))
-        alloc(&stack);
+    if (!stack) //   || (strlen((char *)add) + stack->capacity >= stack->capacity + 1))
+       stack = alloc(stack);
     if (!add) // a modifier pour inclure le path du parsing
     {
-        ft_bzero(stack->data, stack->len);
+        ft_bzero(stack->data, STACK_CAPACITY);
         stack->len = 1;
-        stack->data = ".";
+        stack->data[0] = '.';
         return (stack->data);
     }
-    stack->data + stack->len = "/"; 
-    stack->len += ft_strlen((char)add) + 1;
-    ft_memccpy(stack->data, add, sizeof(add));
-    ft_printf("%s",(char *s)stack->data);
-    return (t_stack->data);
+    stack->data = mempush(stack->data, add, stack->len, ft_strlen((char *)add));
+    stack->len += ft_strlen((const char *)add) + 1;
+    ft_putendl(stack->data);
+    return (stack->data);
 }
 
 void       full_listing(void *add)
 {
-    t_file *lst:
-    
+    t_file *lst;
+    lst = NULL;
+
     get_inf(&lst, (char *)new_path(add));
     sort_lst(&lst);
-    print(lst);
+    //print(lst);
     while (lst)
     {
-        if (lst->d_type = 4)
-            full_listing(lst->name) 
+        if (lst->d_type == 4)
+            full_listing(lst->name); 
         lst = lst->next;
     }
-    new_path(NULL);
+//    new_path(NULL);
     return ;
 }

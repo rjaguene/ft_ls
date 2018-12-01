@@ -12,13 +12,13 @@
 
 #include "ft_ls.h"
 
-static	int		get_inf(t_env **env, t_file **lst)
+int		get_inf(t_file **lst, char *path)
 {
 	DIR		*dir;
 	struct	dirent *sd;
 	t_file *new;
 
-	dir = opendir(".");
+	dir = opendir(path);
 	readdir(dir); //temp
 	readdir(dir);
 	while ((sd = readdir(dir)) != NULL)
@@ -78,9 +78,11 @@ int		main(int argc, char **argv)
 	//if (!(env = malloc(sizeof(env))))
 	//	return (0);
 	//ft_bzero(&env, sizeof(env));
-	get_inf(&env, &lst);
+/*	get_inf(&lst, NULL);
 	sort_lst(&lst);
-    print(lst);
+    print(lst);*/
+    check_opt(lst);
+    exit(0);
 	while (lst)
 	{
 //		ft_printf("%s\n",lst->name);

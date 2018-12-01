@@ -13,7 +13,7 @@
 NAME		=	ft_ls
 
 CC			=	gcc #-Wall -Wextra -Werror 
-FLAGS		= #-fsanitize=address -g3  -fsanitize-address-use-after-scope \
+FLAGS		= #-fsanitize=address -g3  -fsanitize-address-use-after-scope 
 
 LIBFTDIR	=	libft/
 LIBFT 		=	$(LIBFTDIR)libft.a
@@ -24,7 +24,7 @@ SRCS		=	main.c \
 				parser/pars.c \
 				lst.c \
 				print.c \
-				check_opt.c full_listing.c
+				check_opt.c full_listing.c mem.c
 
 OBJDIR		=	bin/
 SUBDIRS		= parser	#structs \

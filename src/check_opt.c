@@ -14,6 +14,6 @@
 
 void        check_opt(t_file *lst)
 {
-    full_listing(lst);
+    full_listing(NULL);
 
 }

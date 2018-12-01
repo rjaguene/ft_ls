@@ -17,6 +17,8 @@
 # include <sys/stat.h>
 # include "../libft/includes/libft.h"
 # include "../libft/includes/ft_printf.h"
+# define STACK_CAPACITY 2048
+
 
 typedef struct	s_pars
 {
@@ -36,6 +38,13 @@ typedef struct			s_file
 	int					file;
 }						t_file;
 
+typedef struct          s_stack
+{
+    void                *data;
+    unit32_t            len;
+    unit32_t            capacity;
+}
+
 typedef	struct			s_env
 {
 	t_pars				pars;
@@ -45,6 +54,8 @@ int						init(t_env **env, int argc, char **argv);
 int						lst_is_sort(t_file *lst);
 t_file					*new_node();
 void                    print(t_file *lst);
+void                    check_opt(t_file *lst);
+void                    full_listing(t_file *lst);
 t_file					*add_link(t_file *lst, t_file *new);
 t_file					*swap2(t_file **lst, int id); //temp
 t_file					*get_prev(t_file *lst, t_file *link);

@@ -23,7 +23,8 @@ SRCDIR		=	src/
 SRCS		=	main.c \
 				parser/pars.c \
 				lst.c \
-				print.c
+				print.c \
+				check_opt.c full_listing.c
 
 OBJDIR		=	bin/
 SUBDIRS		= parser	#structs \
